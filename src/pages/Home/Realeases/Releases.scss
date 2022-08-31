@@ -1,0 +1,16 @@
+.realeases{
+  padding: 42px 0;
+  &__title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+  }
+  &__card{
+    border-radius: 12px;
+    width: 170px;
+    height: 285px;
+    background-color: #3f4b5d;
+  }
+}

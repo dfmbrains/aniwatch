@@ -1,6 +1,6 @@
 import React from 'react';
 import "./header.scss";
-import {NavLink, Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     return (
@@ -15,8 +15,8 @@ const Header = () => {
                         <h2 className="navbar__title">AnimeWatch</h2>
 
                         <div className="navbar__links">
-                            <Link to="/">Home</Link>
-                            <Link to="/list">List anime</Link>
+                            <NavLink to="/">Home</NavLink>
+                            <NavLink to="/list">List anime</NavLink>
                         </div>
 
                     </div>
