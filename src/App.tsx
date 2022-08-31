@@ -7,10 +7,12 @@ import Details from "./pages/Details";
 function App() {
     return (
         <>
-            <Routes>
-                <Route path={'/'} element={<Home/>}/>
-                <Route path={'/:id'} element={<Details/>}/>
-            </Routes>
+            <main>
+                <Routes>
+                    <Route path={'/'} element={<Home/>}/>
+                    <Route path={'/:id'} element={<Details/>}/>
+                </Routes>
+            </main>
         </>
     );
 }
