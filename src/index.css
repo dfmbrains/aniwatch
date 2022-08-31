@@ -6,6 +6,10 @@
     text-decoration: none;
 }
 
+body {
+    background: #192026;
+}
+
 button {
     cursor: pointer;
 }
