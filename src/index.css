@@ -10,11 +10,12 @@ body {
     background: #192026;
 }
 
+
 button {
     cursor: pointer;
 }
 
 .container {
-    width: 1200px;
+    width: 1080px;
     margin: 0 auto;
 }
