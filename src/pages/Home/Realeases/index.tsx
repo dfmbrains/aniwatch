@@ -1,29 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import "./Releases.scss";
-import axios from "axios";
+import {topList} from "../../../store/service";
 import {Swiper, SwiperSlide} from "swiper/react";
+import {useRecoilState} from "recoil";
 
 
 const Realeases = () => {
 
-    const [topList, setTopList] = useState([]);
-
-    useEffect(()=>{
-        const options = {
-            method: 'GET',
-            url: 'https://jikan1.p.rapidapi.com/top/anime/1/upcoming',
-            headers: {
-                'X-RapidAPI-Key': '69ceed32c9msh526975afd6f4d95p10cc17jsn195dc89bbd83',
-                'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
-            }
-        };
-
-        axios.request(options).then(function (response) {
-            setTopList(response.data.top);
-        }).catch(function (error) {
-            console.error(error);
-        });
-    }, []);
+    const [list, setList] = useRecoilState(topList);
 
     return (
         <div className="realeases">
