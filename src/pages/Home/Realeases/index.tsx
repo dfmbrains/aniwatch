@@ -9,6 +9,10 @@ const Realeases = () => {
 
     const [list, setList] = useRecoilState(topList);
 
+    useEffect(()=>{
+
+    }, []);
+
     return (
         <div className="realeases">
             <h2 className="realeases__title">New Realease</h2>
@@ -16,8 +20,8 @@ const Realeases = () => {
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={6}>
-                    {topList.length > 0
-                        ? topList.map((item: any)=>(
+                    {list.length > 0
+                        ? list.map((item: any)=>(
                             <SwiperSlide key={item}>
                                 <div className="realeases__card">
                                     <img className="realeases__card_img" src={item.image_url} alt=""/>

@@ -2,8 +2,8 @@ import axios from "axios";
 import {atom,} from 'recoil';
 
 export const topList = atom({
-    key: 'textState', // unique ID (with respect to other atoms/selectors)
-    default: '', // default value (aka initial value)
+    key: 'listOfTop',
+    default: [],
 });
 
 const options = {
