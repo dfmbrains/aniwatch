@@ -3,21 +3,26 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import "./swiper.scss"
 import image from "../../../assets/imgs/spy_carousel 1.png"
+import {useRecoilState} from "recoil";
+import {topList} from "../../../store/service";
 
 
-const Slider = ({swipes}: any) => {
+const Slider = () => {
+
+    const [list, setList] = useRecoilState(topList);
+
     return (
         <>
             <Swiper
                 slidesPerView={1}
             >
-                {swipes
-                    ? swipes.map((anime: any) => (
+                {list
+                    ? list.map((anime: any) => (
                         <SwiperSlide key={anime.id}>
                             <div className="blurEffect"></div>
-                            <h2 className="title">{anime.name}</h2>
-                            <h2 className="subtitle">{anime.description}</h2>
-                            <img src={image} alt=""/>
+                            <h2 className="title">{anime.title}</h2>
+                            <h2 className="subtitle">{anime.start_date}</h2>
+                            <img src={anime.image_url} alt=""/>
                         </SwiperSlide>
                     ))
                     : ""
