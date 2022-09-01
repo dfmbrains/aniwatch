@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import "./Releases.scss";
-import {topList} from "../../../store/service";
+import {topList, options} from "../../../store/service";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {useRecoilState} from "recoil";
+import axios from "axios";
 
 
 const Realeases = () => {
@@ -10,6 +11,11 @@ const Realeases = () => {
     const [list, setList] = useRecoilState(topList);
 
     useEffect(()=>{
+        axios.request(options).then(function (response) {
+            setList(response.data.top)
+        }).catch(function (error) {
+            console.error(error);
+        });
 
     }, []);
 

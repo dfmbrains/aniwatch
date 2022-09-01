@@ -1,12 +1,12 @@
 import axios from "axios";
-import {atom,} from 'recoil';
+import {atom, selector} from 'recoil';
 
 export const topList = atom({
     key: 'listOfTop',
     default: [],
 });
 
-const options = {
+export const options = {
     method: 'GET',
     url: 'https://jikan1.p.rapidapi.com/top/anime/1/upcoming',
     headers: {
@@ -14,9 +14,3 @@ const options = {
         'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
     }
 };
-
-// axios.request(options).then(function (response) {
-//     setTopList(response.data.top);
-// }).catch(function (error) {
-//     console.error(error);
-// });
