@@ -28,13 +28,13 @@ const Realeases = () => {
                     slidesPerView={6}>
                     {list.length > 0
                         ? list.map((item: any)=>(
-                            <SwiperSlide key={item}>
+                            <SwiperSlide key={item.mal_id}>
                                 <div className="realeases__card">
                                     <img className="realeases__card_img" src={item.image_url} alt=""/>
                                     <div className="realeases__card_blur">
                                     </div>
                                     <span className="realeases__card_subtitle">{item.start_date}</span>
-                                    <span className="realeases__card_title">{item.title}</span>
+                                    <span className="realeases__card_title">{item?.title?.length > 30 ? item.title.slice(0, 30) + "..." : item.title}</span>
                                 </div>
                             </SwiperSlide>
                         ))
