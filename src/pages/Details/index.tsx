@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './details.scss';
 import {useRecoilState} from "recoil";
 import {topList} from "../../store/service";
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useNavigate, useLocation} from "react-router-dom";
 import axios from "axios";
 
 const Details = () => {
@@ -12,17 +12,8 @@ const Details = () => {
 
     const params: any = useParams();
 
-    const clickRender = (id: string) => {
-        const options = {
-            method: 'GET',
-            url: `https://api.jikan.moe/v4/anime/${id}/full`,
-        };
-        axios(options).then(function (response) {
-            setAnimeDetails(response.data.data)
-        }).catch(function (error) {
-            console.error(error);
-        });
-    };
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const first = {
@@ -49,7 +40,7 @@ const Details = () => {
         }).catch(function (error) {
             console.error(error);
         });
-    }, []);
+    }, [location.pathname]);
 
     return (
         <section className="details">
@@ -64,7 +55,7 @@ const Details = () => {
                                   encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen>
                             </iframe>
-                            : <div style={{marginBottom: 50}}> </div>
+                            : <div style={{marginBottom: 50}}></div>
                         : <div className="details__player"/>
                     }
 
@@ -112,7 +103,7 @@ const Details = () => {
                                     <div className="details__recs_item">
                                         <img className="details__recs_item-img" src={el.image_url} alt=""/>
                                         <div onClick={() => {
-                                            clickRender(el.mal_id)
+                                            navigate(`/details/${el.mal_id}`)
                                         }} className="details__recs_item-blur"/>
                                     </div>
                                 ))
