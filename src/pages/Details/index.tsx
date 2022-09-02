@@ -18,7 +18,7 @@ const Details = () => {
     useEffect(() => {
         const first = {
             method: 'GET',
-            url: 'https://jikan1.p.rapidapi.com/top/anime/1/bypopularity',
+            url: `https://jikan1.p.rapidapi.com/top/anime/${params.id}/bypopularity`,
             headers: {
                 'X-RapidAPI-Key': '69ceed32c9msh526975afd6f4d95p10cc17jsn195dc89bbd83',
                 'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
