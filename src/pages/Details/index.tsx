@@ -25,6 +25,10 @@ const Details = () => {
     };
 
     useEffect(() => {
+
+        axios.get("https://api.jikan.moe/v4/anime/38000/episodes")
+            .then(({data})=> console.log(data));
+
         const first = {
             method: 'GET',
             url: 'https://jikan1.p.rapidapi.com/top/anime/1/bypopularity',
