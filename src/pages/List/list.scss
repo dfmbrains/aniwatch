@@ -1,0 +1,114 @@
+.list {
+  padding: 40px 0;
+
+  &__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+  }
+
+  &__column {
+    margin: 50px auto 0;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+
+  &__item {
+    display: flex;
+    column-gap: 20px;
+    padding: 20px;
+    border-top: 0.5px solid #FFFFFF50;
+    cursor: pointer;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0.5px;
+      background: #FFFFFF50;
+      height: 0;
+      transition: 0.3s;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 0.5px;
+      background: #FFFFFF50;
+      height: 0;
+      transition: 0.3s;
+    }
+
+    &:hover::after {
+      height: 100%;
+      transition: 0.3s;
+    }
+
+    &:hover::before {
+      height: 100%;
+      transition: 0.3s;
+    }
+
+    &_number {
+      width: 5%;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+      letter-spacing: 0.07em;
+      color: #FFFFFF;
+    }
+
+    &_info {
+      width: 80%;
+      display: flex;
+      column-gap: 10px;
+
+      img {
+        width: 20%;
+      }
+
+      &-title {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.07em;
+        color: #FFFFFF;
+
+        &-second {
+          font-family: 'Inter', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 23px;
+          letter-spacing: 0.07em;
+          color: #868686;
+          margin: 5px 0 0;
+        }
+      }
+    }
+
+    &_score {
+      color: yellow;
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 0.07em;
+      margin: 5px 0 0;
+    }
+  }
+}
