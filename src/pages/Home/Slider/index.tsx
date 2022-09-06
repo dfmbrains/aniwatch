@@ -18,20 +18,11 @@ const Slider = () => {
     };
 
     useEffect(()=>{
-        let arr: any = [];
-        for (let i = 0; i < 3; i++) {
-            axios.get("https://api.jikan.moe/v4/random/anime").then(function (response) {
-                if(randomAnime.lenght === 0){
-                    arr = ([...response.data.data])
-                }
-                else {
-                    arr = ([...arr, response.data.data])
-                }
-                setRandomAnime(arr)
-            }).catch(function (error) {
-                console.error(error);
-            });
-        }
+        axios.get("https://api.jikan.moe/v4/random/anime").then(function (response) {
+            setRandomAnime(response.data.data)
+        }).catch(function (error) {
+            console.error(error);
+        });
     }, []);
 
     return (
@@ -39,17 +30,14 @@ const Slider = () => {
             <Swiper
                 slidesPerView={1}
             >
-                {randomAnime && randomAnime.length > 0
-                    ? randomAnime.map((anime: any)=>(
-                        <SwiperSlide key={anime?.mal_id} onClick={()=> {
-                            directDetails(anime?.mal_id)
-                        }}>
+                {randomAnime
+                    ? <SwiperSlide onClick={()=> {directDetails(randomAnime?.mal_id)}}>
                             <div className="blurEffect"> </div>
-                            <h2 className="title">{anime?.title}</h2>
-                            <h2 className="subtitle">{anime?.synopsis}</h2>
-                            <img src={anime?.images?.jpg?.large_image_url} alt=""/>
-                        </SwiperSlide>
-                    ))
+                            <h2 className="title">{randomAnime?.title}</h2>
+                            <h2 className="subtitle">{randomAnime?.synopsis}</h2>
+                            <img src={randomAnime?.images?.jpg?.large_image_url} alt=""/>
+                </SwiperSlide>
+
                     : <SwiperSlide>
                         <h2 className="title"></h2>
                         <h2 className="subtitle"></h2>

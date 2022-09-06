@@ -1,8 +1,19 @@
 import React from 'react';
 import "./header.scss";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const navigateList = ()=>{
+        if (location.pathname !== "/list"){
+            navigate("/list")
+        }
+    };
+
     return (
         <header className="header">
 
@@ -22,7 +33,7 @@ const Header = () => {
                     </div>
 
                     <div className="navbar__search">
-                        <input placeholder="Search anime or movie" type="text"/>
+                        <input onChange={()=> navigateList()} placeholder="Search anime or movie" type="text"/>
                     </div>
 
                 </nav>

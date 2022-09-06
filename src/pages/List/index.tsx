@@ -1,32 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './list.scss';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {useRecoilValue} from "recoil";
+import {getAllAnime} from "../../store/service";
 
 const List = () => {
 
     const navigate = useNavigate();
 
-    const [animeList, setAnimeList] = useState([]);
-
-    useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: `https://api.jikan.moe/v4/anime`,
-        };
-        axios(options).then(function (response) {
-            setAnimeList(response.data.data)
-        }).catch(function (error) {
-            console.error(error);
-        });
-    }, []);
+    const animeList = useRecoilValue(getAllAnime);
 
     return (
         <section className="list">
             <div className="container">
-                <h2 className="list__title">All</h2>
                 <div className="list__column">
-                    {animeList && animeList.map((el: any, idx: number) => (
+                    {animeList ?
+                        animeList.map((el: any, idx: number) => (
                         <div onClick={() => navigate(`/details/${el.mal_id}`)} className="list__item">
                             <h3 className="list__item_number">{idx + 1}</h3>
                             <div className="list__item_info">
@@ -41,7 +30,9 @@ const List = () => {
                             </div>
                             <h3 className="list__item_score">{el.score}</h3>
                         </div>
-                    ))}
+                    ))
+                    : ""
+                    }
                 </div>
             </div>
         </section>

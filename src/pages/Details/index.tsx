@@ -17,29 +17,13 @@ const Details = () => {
 
     useEffect(() => {
 
-        axios.get("https://api.jikan.moe/v4/anime/38000/episodes")
-            .then(({data})=> console.log(data));
-
-        const first = {
-            method: 'GET',
-            url: `https://jikan1.p.rapidapi.com/top/anime/${params.id}/bypopularity`,
-            headers: {
-                'X-RapidAPI-Key': '69ceed32c9msh526975afd6f4d95p10cc17jsn195dc89bbd83',
-                'X-RapidAPI-Host': 'jikan1.p.rapidapi.com'
-            }
-        };
-        axios.request(first).then(function (response) {
-            setList(response.data.top)
+        axios.get("https://api.jikan.moe/v4/top/anime").then(function (response) {
+            setList(response.data.data);
         }).catch(function (error) {
             console.error(error);
         });
-        setAnimeDetails();
 
-        const options = {
-            method: 'GET',
-            url: `https://api.jikan.moe/v4/anime/${params.id}/full`,
-        };
-        axios(options).then(function (response) {
+        axios(`https://api.jikan.moe/v4/anime/${params.id}/full`).then(function (response) {
             setAnimeDetails(response.data.data)
         }).catch(function (error) {
             console.error(error);
@@ -59,7 +43,7 @@ const Details = () => {
                                   encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen>
                             </iframe>
-                            : <div style={{marginBottom: 50}}></div>
+                            : <div style={{marginBottom: 50}}> </div>
                         : <div className="details__player"/>
                     }
 
@@ -103,9 +87,9 @@ const Details = () => {
                     <div className="details__recs_row">
                         {
                             list.length > 0 ?
-                                list.slice(0, 6).map((el: any) => (
+                                list.map((el: any) => (
                                     <div className="details__recs_item">
-                                        <img className="details__recs_item-img" src={el.image_url} alt=""/>
+                                        <img className="details__recs_item-img" src={el?.images?.jpg.image_url} alt=""/>
                                         <div onClick={() => {
                                             navigate(`/details/${el.mal_id}`)
                                         }} className="details__recs_item-blur"/>
